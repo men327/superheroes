@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/superheroe")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 @CacheConfig(cacheNames={"superheroes"})
 public class SuperheroeController {
 
@@ -44,9 +46,9 @@ public class SuperheroeController {
 
     @DeleteMapping("/{codigo}")
     @CacheEvict(allEntries = true)
-    public ResponseEntity<Void> eliminar(@PathVariable("codigo") final Integer codigo) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void eliminar(@PathVariable("codigo") final Integer codigo) {
         this.superheroeService.eliminar(codigo);
-        return ResponseEntity.noContent().build();
     }
 
 }
