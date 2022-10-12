@@ -6,6 +6,7 @@ import com.factech.colombia.superheroes.entities.SuperheroeEntity;
 import com.factech.colombia.superheroes.mappers.SuperheroeMapper;
 import com.factech.colombia.superheroes.repositories.SuperheroeRepository;
 import com.factech.colombia.superheroes.services.SuperheroeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class SuperheroeServiceImpl implements SuperheroeService {
 
     private final SuperheroeRepository superheroeRepository;
@@ -33,7 +35,8 @@ public class SuperheroeServiceImpl implements SuperheroeService {
     }
 
     private List<SuperheroeEntity> obtenerDatos(final Optional<String> nombre) {
-        return nombre.isPresent()?this.superheroeRepository.findByNombreContainingIgnoreCase(nombre.get()) : this.superheroeRepository.findAll();
+        return nombre.isPresent()?
+                this.superheroeRepository.findByNombreContainingIgnoreCase(nombre.get()) : this.superheroeRepository.findAll();
     }
 
     @Override
@@ -43,6 +46,7 @@ public class SuperheroeServiceImpl implements SuperheroeService {
 
     @Override
     public SuperheroeDTO editar(final SuperheroeDTO heroeData) {
+        log.info("{}", heroeData);
         SuperheroeEntity heroe = validarExiste(heroeData.getCodigo());
         heroe.setNombre(heroeData.getNombre());
         heroe.setActivo(heroeData.getEstado());

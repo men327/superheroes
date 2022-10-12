@@ -10,5 +10,6 @@ spring:
     password: password
   jpa:
     show-sql: true
+    defer-datasource-initialization: true
     hibernate:
-      ddl-auto=update: create
+      ddl-auto: none
