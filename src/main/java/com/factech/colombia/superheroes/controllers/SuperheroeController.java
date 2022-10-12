@@ -14,6 +14,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,7 +70,7 @@ public class SuperheroeController {
             @ApiResponse(code = 403, message = "forbidden"),
             @ApiResponse(code = 404, message = "not found")
     })
-    public SuperheroeDTO editar(@RequestBody final SuperheroeDTO heroe) {
+    public SuperheroeDTO editar(@Valid @RequestBody final SuperheroeDTO heroe) {
         return this.superheroeService.editar(heroe);
     }
 

@@ -1,1 +1,1 @@
-create table superheroes (codigo integer not null, nombre varchar(255), activo boolean, primary key (codigo));
+create table superheroes (codigo integer not null, nombre varchar(100) not null, activo boolean not null, primary key (codigo));

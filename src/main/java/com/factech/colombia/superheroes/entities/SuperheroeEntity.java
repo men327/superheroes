@@ -21,13 +21,13 @@ import javax.persistence.Table;
 public class SuperheroeEntity {
 
     @Id
-    @Column
+    @Column(nullable = false)
     private Integer codigo;
 
-    @Column
+    @Column(length = 100, nullable = false)
     private String nombre;
 
-    @Column
+    @Column(nullable = false)
     private Boolean activo;
 
 }
