@@ -72,6 +72,20 @@ class SuperheroeServiceImplTest {
     }
 
     @Test
+    void dadaUnCodigoParaBuscarEntoncesExiste() {
+        Integer codigo = 1;
+        SuperheroeEntity superheroe = SuperheroeEntity.builder().nombre("spiderman").codigo(2).activo(Boolean.FALSE).build();
+        SuperheroeDTO superheroeDTO = SuperheroeDTO.builder().nombre("spiderman").codigo(2).estado(Boolean.FALSE).build();
+
+        Mockito.when(superheroeRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(superheroe));
+        Mockito.when(superheroeMapper.toDto(Mockito.any())).thenReturn(superheroeDTO);
+
+        SuperheroeDTO resultado = superheroeService.buscarPorCodigo(codigo);
+
+        Assertions.assertEquals(superheroeDTO, resultado);
+    }
+
+    @Test
     void dadaUnCodigoParaEliminarEntoncesNoExiste() {
         Integer codigo = 1;
         Optional<SuperheroeEntity> resultado = Optional.empty();
@@ -93,6 +107,22 @@ class SuperheroeServiceImplTest {
         superheroeService.eliminar(codigo);
 
         Mockito.verify(superheroeRepository, Mockito.times(1)).delete(superheroe1);
+    }
+
+    @Test
+    void dadaUnCodigoParaEditarEntoncesEsExitoso() {
+        SuperheroeEntity superheroe = SuperheroeEntity.builder().nombre("spiderman").codigo(2).activo(Boolean.FALSE).build();
+        SuperheroeEntity superheroeEditado = SuperheroeEntity.builder().nombre("spiderman1").codigo(2).activo(Boolean.FALSE).build();
+        SuperheroeDTO superheroeDTO = SuperheroeDTO.builder().nombre("spiderman1").codigo(2).estado(Boolean.FALSE).build();
+
+
+        Mockito.when(superheroeRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(superheroe));
+        Mockito.when(superheroeRepository.save(Mockito.any())).thenReturn(superheroeEditado);
+        Mockito.when(superheroeMapper.toDto(Mockito.any())).thenReturn(superheroeDTO);
+
+        SuperheroeDTO resultado = superheroeService.editar(superheroeDTO);
+
+        Assertions.assertEquals(superheroeDTO, resultado);
     }
 
 }

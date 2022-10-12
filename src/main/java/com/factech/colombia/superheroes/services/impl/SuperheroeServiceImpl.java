@@ -46,7 +46,6 @@ public class SuperheroeServiceImpl implements SuperheroeService {
 
     @Override
     public SuperheroeDTO editar(final SuperheroeDTO heroeData) {
-        log.info("{}", heroeData);
         SuperheroeEntity heroe = validarExiste(heroeData.getCodigo());
         heroe.setNombre(heroeData.getNombre());
         heroe.setActivo(heroeData.getEstado());
