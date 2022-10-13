@@ -11,6 +11,8 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(builderClassName = "Builder", toBuilder = true)
+@ToString
+@EqualsAndHashCode
 public class SuperheroeDTO {
 
     @JsonProperty(value = "code")
