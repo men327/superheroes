@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.stream.Collectors;
@@ -15,7 +14,7 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class AdviceController {
 
-    private final static String COMMA = ";";
+    private static final String COMMA = ";";
 
     @ExceptionHandler(value = SuperheroeException.class)
     public ResponseEntity<ErrorResponse> superheroeHandler(SuperheroeException exception) {

@@ -1,8 +1,6 @@
 package com.factech.colombia.superheroes.controllers;
 
-
 import com.factech.colombia.superheroes.dtos.SuperheroeDTO;
-import com.factech.colombia.superheroes.entities.SuperheroeEntity;
 import com.factech.colombia.superheroes.services.SuperheroeService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class SuperheroeControllerTest {
+class SuperheroeControllerTest {
 
     private SuperheroeController superheroeController;
 
