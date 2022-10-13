@@ -11,7 +11,7 @@
 	<artifactId>superheroes</artifactId>
 	<version>1.0.0</version>
 	<name>superheroes</name>
-	<description>API mantenimiento superheroes</description>
+	<description>API para gestionar superheroes</description>
 	<properties>
 		<java.version>11</java.version>
 		<org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
